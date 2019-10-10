@@ -5,6 +5,7 @@ import akka.actor.typed.receptionist.{Receptionist, ServiceKey}
 import akka.actor.typed.scaladsl.Behaviors
 import io.bernhardt.typedpayment.Configuration.{CreditCard, MerchantConfiguration, PaymentMethod, UserId}
 import io.bernhardt.typedpayment.Processor.ProcessorRequest
+import io.bernhardt.typedpayment.creditCardStorage.domain.CreditCardStorage
 import squants.market.Money
 
 object CreditCardProcessor {
@@ -28,6 +29,9 @@ object CreditCardProcessor {
 }
 
 object Processor {
+
   sealed trait ProcessorRequest
+
   case class Process(amount: Money, merchantConfiguration: MerchantConfiguration, userId: UserId, paymentMethod: PaymentMethod) extends ProcessorRequest
+
 }
